@@ -18,11 +18,11 @@ class App {
         // 1
         app.get('/', (req, res) => this.contactListcontroller.getById(req, res));
         // 2
-        app.get('/', (req, res) => this.contactListcontroller.createContacts(req, res));
+        app.post('/', (req, res) => this.contactListcontroller.createContacts(req, res));
         // 3
-        app.get('/', (req, res) => this.contactListcontroller.updateContacts(req, res));
+        app.put('/', (req, res) => this.contactListcontroller.updateContacts(req, res));
         // 4
-        app.get('/', (req, res) => this.contactListcontroller.removeContacts(req, res));
+        app.delete('/', (req, res) => this.contactListcontroller.removeContacts(req, res));
     }
 
   public start(PORT: number):void {
