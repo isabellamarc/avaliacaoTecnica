@@ -4,42 +4,64 @@ import 'dotenv/config';
 class ContactListService {
 
   public getAll = async (): Promise<contactList[]> => {
-    const teams = await contactList.findAll();
-    return teams;
+    const contacts = await contactList.findAll();
+    return contacts;
   };
 
   public getById = async (id: number): Promise<contactList | null> => {
-    const team = await contactList.findOne({ where: { id } });
-    return team;
+    const contact = await contactList.findOne({ where: { id } });
+    return contact;
   };
 
   public createContacts = async (
-    homeTeam: number,
-    awayTeam: number,
-    homeTeamGoals: number,
-    awayTeamGoals: number,
+    id: number,
+    nome: string,
+    email: string,
+    telefone: number,
+    whatsapp: number,
   ) => {
-    const match = await contactList.create({
-      homeTeam,
-      awayTeam,
-      homeTeamGoals,
-      awayTeamGoals,
-      inProgress: true,
+    const contact = await contactList.create({
+      id,
+      nome,
+      email,
+      telefone,
+      whatsapp,
     });
-    return match;
+    return contact;
   };
 
   public updateContacts = async (
     id: number,
-    homeTeamGoals: number,
-    awayTeamGoals: number,
+    nome: string,
+    email: string,
+    telefone: number,
+    whatsapp: number,
   ) => {
-    const match = await contactList.findByPk(id);
+    const contact = await contactList.findByPk(id);
     await contactList.update({
-      homeTeamGoals,
-      awayTeamGoals,
+        id,
+        nome,
+        email,
+        telefone,
+        whatsapp,
     }, { where: { id } });
   };
+
+  public removeContacts = async (
+    id: number,
+    nome: string,
+    email: string,
+    telefone: number,
+    whatsapp: number,) => {
+    const contact = await contactList.findByPk(id);
+    await contactList.remove({
+        id,
+        nome,
+        email,
+        telefone,
+        whatsapp,
+    }, { where: { id } });
+  }
 }
 
 export default ContactListService;
