@@ -34,7 +34,7 @@ class ContactListController {
 
   public removeContacts = async (req: Request, res: Response) => {
     const { id } = req.params;
-    await this.contactListService.removeContacts(id);
+    await this.contactListService.removeContacts(Number(id));
     res.status(200).json({ message: 'Deleted!' });
   };
 }

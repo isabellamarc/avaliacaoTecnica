@@ -1,5 +1,4 @@
-import * as express from 'express';
-import 'express-async-errors';
+import express from 'express';
 import ContactListController from '../controller/contactListController';
 
 // get - select - listar - 1
@@ -14,7 +13,6 @@ class App {
     constructor() {
         this.app = express();
         
-        this.app.get('/', (req, res) => res.json({ ok: true }));
         // 1
         app.get('/', (req, res) => this.contactListcontroller.getById(req, res));
         // 2
